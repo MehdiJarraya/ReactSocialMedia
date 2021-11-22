@@ -1,6 +1,7 @@
 import React from 'react';
 import { ReactComponent as Fb } from '../../assets/Icons/fb.svg';
 import { ReactComponent as Ig } from '../../assets/Icons/ig.svg';
+import { ReactComponent as Gift } from '../../assets/Icons/gift.svg';
 import { FbPostMission, IgStoryMission } from '../../generated/graphql';
 import './styles.css';
 
@@ -11,18 +12,26 @@ const MissionItem: React.FC<FbPostMission | IgStoryMission> = (props) => {
 
     return (
         <div className="missionItem">
+
+            <div className="mediaContainer">
             {__typename === "FBPostMission" ? <img className="img" alt={image.alt || ""} src={image.src} /> :
-                <iframe title={video.alt || video.src} className="video"
-                    src={video.src}>
-                </iframe>
-            }
+                    <iframe title={video.alt || video.src} className="video"
+                        src={video.src}>
+                    </iframe>
+                }
+                <div className="mediaAction" >
+                {localStorage.getItem("language") === "en-emodeng" ? "Cash" : "Efectivo"}
+                    {__typename === "FBPostMission" ? <Fb /> : <Ig />}
+                </div>
+
+            </div>
             <p className="title">{title}</p>
             <div className="rewardCard">
                 <span >
-                    {__typename === "FBPostMission" ? <Fb /> : <Ig />}
+                    <Gift />
                 </span>
                 <p className="rewardText">
-                    {localStorage.getItem("language")==="en-emodeng"? "Rewards": "Recompensa"}
+                    {localStorage.getItem("language") === "en-emodeng" ? "Rewards" : "Recompensa"}
                 </p>
                 <p>$ {cashReward}</p>
             </div>

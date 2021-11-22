@@ -28,12 +28,37 @@
 
 .img {
   height: 228px;
+  width: 100%;
 }
+
 .video {
   height: 228px;
+  width: 100%;
 }
 
 .rewardText {
   font-weight: 700;
   font-size: 14px;
 }
+
+.mediaContainer{
+  position: relative;
+  width: 100%;
+}
+
+.mediaAction {
+  min-width: 60px;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0px 4px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: transparent;
+  font-weight: 400;
+  font-size: 14px;
+}
+

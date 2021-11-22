@@ -30,13 +30,8 @@ const MissionListContainer: React.FC = () => {
 
   useEffect(() => {
     setCurrentLanguage("en-emodeng")
-  }, [])
+  }, [setCurrentLanguage])
   
-  useEffect(() => {
-    console.log("use Effect data changed", data);
-
-  }, [data])
-
   if (!data) {
     return <div>No data</div>;
   }

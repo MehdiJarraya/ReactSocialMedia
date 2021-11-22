@@ -1,0 +1,11 @@
+overwrite: true
+schema: "https://master-bb-ta-frontend-3tunt6sv4q-ez.a.run.app/graphql"
+documents: "./src/components/**/*.{ts,tsx}"
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHooks: true

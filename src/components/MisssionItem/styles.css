@@ -1,0 +1,39 @@
+.missionItem {
+  display: flex;
+  flex-direction: column;
+  background-color: #e5e5e5;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+.rewardCard {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 8px 0px;
+}
+.rewardCard > :not(:last-child) {
+  margin-right: 10px;
+}
+
+.title {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 24px;
+  width: 100%;
+}
+
+.img {
+  height: 228px;
+}
+.video {
+  height: 228px;
+}
+
+.rewardText {
+  font-weight: 700;
+  font-size: 14px;
+}

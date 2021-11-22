@@ -1,8 +1,8 @@
 import React from 'react';
-import { FbPostMission, IgStoryMission } from '../../generated/graphql';
-import './styles.css';
 import { ReactComponent as Fb } from '../../assets/Icons/fb.svg';
 import { ReactComponent as Ig } from '../../assets/Icons/ig.svg';
+import { FbPostMission, IgStoryMission } from '../../generated/graphql';
+import './styles.css';
 
 const MissionItem: React.FC<FbPostMission | IgStoryMission> = (props) => {
     const { title, cashReward, __typename } = props
@@ -22,7 +22,7 @@ const MissionItem: React.FC<FbPostMission | IgStoryMission> = (props) => {
                     {__typename === "FBPostMission" ? <Fb /> : <Ig />}
                 </span>
                 <p className="rewardText">
-                    Rewards
+                    {localStorage.getItem("language")==="en-emodeng"? "Rewards": "Recompensa"}
                 </p>
                 <p>$ {cashReward}</p>
             </div>

@@ -1,16 +1,15 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useGetMissionsQuery } from '../../generated/graphql';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { setAng, setSpanich } from "../../store/Slice";
 import InfiniteScroll from '../InfiniteScroll';
 import MissionList from './MissionList';
 import './styles.css';
-import { useLocalStorage } from '../../hooks';
 
 export interface OwnProps {
   id: number
 }
 const MissionListContainer: React.FC = () => {
-  // en-emodeng  es-GT
-  const [currentLanguage, setCurrentLanguage]=useLocalStorage("language")
 
   const { data, loading, fetchMore } = useGetMissionsQuery({
     variables: {
@@ -26,19 +25,19 @@ const MissionListContainer: React.FC = () => {
       },
     });
   };
+  // The `state` arg is correctly typed as `RootState` already
+  const language = useAppSelector(state => state.preference.language)
+  const dispatch = useAppDispatch()
 
 
-  useEffect(() => {
-    setCurrentLanguage("en-emodeng")
-  }, [setCurrentLanguage])
-  
+
   if (!data) {
     return <div>No data</div>;
   }
   return (
     <>
-      <button className={`button ${currentLanguage==="en-emodeng" &&"actif"}`} onClick={()=>{setCurrentLanguage("en-emodeng")}} >English</button>
-      <button className={`button ${currentLanguage==="es-GT" &&"actif"}`} onClick={()=>{setCurrentLanguage("es-GT")}}>Spanish</button>
+      <button className={`button ${language==="en-emodeng" &&"actif"}`} onClick={()=>{dispatch(setAng())}} >English</button>
+      <button className={`button ${language==="es-GT" &&"actif"}`} onClick={()=>{dispatch(setSpanich())}}>Spanish</button>
       <InfiniteScroll
         hasMoreData={data?.getFeed.hasNextPage || false}
         isLoading={loading}

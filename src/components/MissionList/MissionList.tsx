@@ -3,6 +3,7 @@ import { FbPostMission, GetMissionsQuery, IgStoryMission } from '../../generated
 import { groupBy } from '../../utils';
 import MissionItem from '../MisssionItem';
 import './styles.css';
+import { useAppSelector } from '../../hooks';
 
 interface Props {
   data: GetMissionsQuery;
@@ -21,6 +22,8 @@ const MissionList: React.FC<Props> = ({ data }) => {
     }
   }, [data]);
 
+  const language = useAppSelector(state => state.preference.language)
+
   if (!data.getFeed.items) {
     return <div>No data available</div>;
   }
@@ -30,7 +33,7 @@ const MissionList: React.FC<Props> = ({ data }) => {
       {Object.keys(groupBy(data.getFeed.items, i => i.date)).map(key =>
         <div key={key}>
           {/* es-GT */}
-          <p className="date">{`${new Date(key).getDay()}  ${new Date(key).toLocaleDateString(localStorage.getItem("language") || "", { month: 'long' })} ${new Date(key).getFullYear()} `}  </p>
+          <p className="date">{`${new Date(key).getDay()}  ${new Date(key).toLocaleDateString(language || "", { month: 'long' })} ${new Date(key).getFullYear()} `}  </p>
           {groupBy(data.getFeed.items, i => i.date)[key].map((item: FbPostMission | IgStoryMission, index) =>
             <MissionItem key={index} {...item} />
           )}

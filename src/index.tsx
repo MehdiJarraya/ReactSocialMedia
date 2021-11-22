@@ -5,6 +5,8 @@ import App from './App';
 import { GetFeedResponse } from './generated/graphql';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import {store} from "./store"
 
 
 const cache = new InMemoryCache({
@@ -47,7 +49,9 @@ const client = new ApolloClient({
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
+    <Provider store={store}>
       <App />
+      </Provider>
     </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
